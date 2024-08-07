@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "96604142063",
+    "project_id": "seat-geek-2024",
+    "storage_bucket": "seat-geek-2024.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:96604142063:android:8a68bb6e76797f70d25e1a",
+        "android_client_info": {
+          "package_name": "com.example.simplife"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC8nhDUANrxTtQOnTf7ZE8yNOWG36Qrup4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
