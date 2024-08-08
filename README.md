@@ -1,4 +1,4 @@
-# Movie_Ticket_Booking_App
+# Seat Geek
 
 ## Overview
 
