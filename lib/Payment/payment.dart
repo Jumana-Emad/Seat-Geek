@@ -11,7 +11,7 @@ import 'models/credit.dart';
 class PaymentPage extends StatefulWidget {
   const PaymentPage({super.key, required this.ticket});
 
-  final TicketData ticket;
+  final Ticket ticket;
 
   @override
   State<PaymentPage> createState() => _PaymentPageState();
@@ -198,7 +198,7 @@ class _PaymentPageState extends State<PaymentPage> {
     }
   }
 
-  void onPaymentSuccess(TicketData ticket) async {
+  void onPaymentSuccess(Ticket ticket) async {
     await uploadTicket(ticket);
     await updateSeatStatus(
         ticket.movieId, ticket.selectedSeats, user!.email!);

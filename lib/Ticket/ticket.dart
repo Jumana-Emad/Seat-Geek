@@ -1,12 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:qr_flutter/qr_flutter.dart';
-import 'package:simplife/constants.dart';
+import '../constants.dart';
 import 'package:ticket_widget/ticket_widget.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'models/cinema_ticket.dart';
 import 'QR_cubit/qr_cubit.dart';
+import 'models/ticket_model.dart';
 import 'ticket_data.dart';
 
 class MyTicketsPage extends StatelessWidget {
@@ -23,7 +23,7 @@ class MyTicketsPage extends StatelessWidget {
       ),
       body: BlocProvider(
         create: (context) => QrCubit(),
-        child: FutureBuilder<List<CinemaTicket>>(
+        child: FutureBuilder<List<Ticket>>(
           future: _fetchUserTickets(),
           builder: (context, snapshot) {
             if (snapshot.connectionState == ConnectionState.waiting) {
@@ -156,7 +156,7 @@ class MyTicketsPage extends StatelessWidget {
     );
   }
 
-  Future<List<CinemaTicket>> _fetchUserTickets() async {
+  Future<List<Ticket>> _fetchUserTickets() async {
     final userId = FirebaseAuth.instance.currentUser?.uid;
 
     if (userId == null) {
@@ -170,7 +170,7 @@ class MyTicketsPage extends StatelessWidget {
         .get();
 
     return snapshot.docs
-        .map((doc) => CinemaTicket.fromJson(doc.data()))
+        .map((doc) => Ticket.fromMap(doc.data()))
         .toList();
   }
 }

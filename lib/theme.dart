@@ -10,6 +10,9 @@ final lightTheme = ThemeData(
 );
 final darkTheme = ThemeData(
   brightness: Brightness.dark,
+  bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+    backgroundColor: Colors.transparent
+  ),
   colorScheme: ColorScheme.dark(
       surface: Colors.indigoAccent.shade700,
       primary: Colors.white,

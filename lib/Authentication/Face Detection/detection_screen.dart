@@ -30,6 +30,7 @@ class FaceRecognitionState extends State<FaceRecognition> {
     cameras = await availableCameras();
     _cameraController = CameraController(cameras[1], ResolutionPreset.high);
     await _cameraController.initialize();
+
     _cameraController.startImageStream((CameraImage image) {
       if (!_isDetecting) {
         _isDetecting = true;

@@ -15,11 +15,21 @@ class SignInRequested extends AuthEvent {
 
   SignInRequested(this.email, this.password);
 }
+
 class GoogleSignInRequested extends AuthEvent {}
+
 class SignOutRequested extends AuthEvent {}
 
 class AuthStatusChanged extends AuthEvent {
   final User? user;
 
   AuthStatusChanged(this.user);
+}
+
+class EmailVerificationRequested extends AuthEvent {}
+
+class ForgotPasswordRequested extends AuthEvent {
+  final String email;
+
+  ForgotPasswordRequested(this.email);
 }

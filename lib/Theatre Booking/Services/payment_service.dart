@@ -54,7 +54,7 @@ Future createPaymentIntent(
   }
 }
 
-Future<void> initPaymentSheet(TicketData ticket, BuildContext context) async {
+Future<void> initPaymentSheet(Ticket ticket, BuildContext context) async {
   try {
     final user = FirebaseAuth.instance.currentUser;
     // 1. create payment intent on the client side by calling stripe api
@@ -91,7 +91,7 @@ Future<void> initPaymentSheet(TicketData ticket, BuildContext context) async {
   }
 }
 
-Future<void> pay(TicketData ticket, BuildContext context) async {
+Future<void> pay(Ticket ticket, BuildContext context) async {
   await initPaymentSheet(ticket, context);
 
   try {
@@ -119,19 +119,21 @@ Future<void> pay(TicketData ticket, BuildContext context) async {
   }
 }
 
-void onPaymentSuccess(TicketData ticket, BuildContext context) async {
+void onPaymentSuccess(Ticket ticket, BuildContext context) async {
   final user = FirebaseAuth.instance.currentUser;
+  String slot = "${ticket.movieId}${ticket.date}${ticket.time}";
   await uploadTicket(ticket);
   await updateSeatStatus(
-      ticket.movieId, ticket.selectedSeats, user!.email!);
+      slot, ticket.selectedSeats, user!.email!);
   Navigator.of(context).pushAndRemoveUntil(
     MaterialPageRoute(builder: (context) => const Home()),
         (Route<dynamic> route) => false,
   );
 }
 
-Future<void> uploadTicket(TicketData ticket) async {
+Future<void> uploadTicket(Ticket ticket) async {
   final firestore = FirebaseFirestore.instance;
+
   final ticketsCollection =
       firestore.collection('users').doc(ticket.userId).collection('tickets');
 
@@ -143,9 +145,10 @@ Future<void> uploadTicket(TicketData ticket) async {
   }
 }
 
-Future<void> updateSeatStatus(String movieId,List selectedSeats, String userEmail) async {
+Future<void> updateSeatStatus(String slot,List selectedSeats, String userEmail) async {
   final firestore = FirebaseFirestore.instance;
-  final seatsCollection = firestore.collection('movies').doc(movieId).collection('Seats');
+
+  final seatsCollection = firestore.collection('movies').doc(slot).collection('Seats');
 
   for (String seatId in selectedSeats) {
     await seatsCollection.doc(seatId).update({

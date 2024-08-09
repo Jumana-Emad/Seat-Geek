@@ -34,35 +34,40 @@ class _HomeState extends State<Home> {
         create: (context) => MovieSearchCubit(tmdbService),
         child: const SearchPage(),
       ), // Blank page
-      MyTicketsPage(), // Replace with your Ticket page
+      const MyTicketsPage(), // Replace with your Ticket page
       const Profile(),
     ];
 
     return Scaffold(
       bottomNavigationBar: BottomNavigationBar(
-        backgroundColor: Theme.of(context).brightness == Brightness.light
-            ? Colors.white
-            : Colors.black87,
-        items: const [
+        items:  [
           BottomNavigationBarItem(
-            icon: Icon(Icons.movie),
+            icon: const Icon(Icons.movie),
             label: "Movies",
-            backgroundColor: Colors.transparent,
+            backgroundColor: Theme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : Colors.black87,
           ),
           BottomNavigationBarItem(
-            icon: Icon(Icons.search),
+            icon: const Icon(Icons.search),
             label: "Search",
-            backgroundColor: Colors.transparent,
+            backgroundColor: Theme.of(context).brightness == Brightness.light
+                ? Colors.white
+                : Colors.black87,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.theaters),
+           BottomNavigationBarItem(
+            icon: const Icon(Icons.theaters),
             label: "My Tickets",
-            backgroundColor: Colors.transparent,
+             backgroundColor: Theme.of(context).brightness == Brightness.light
+                 ? Colors.white
+                 : Colors.black87,
           ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.person),
+           BottomNavigationBarItem(
+            icon: const Icon(Icons.person),
             label: "Profile",
-            backgroundColor: Colors.transparent,
+             backgroundColor: Theme.of(context).brightness == Brightness.light
+                 ? Colors.white
+                 : Colors.black87,
           ),
         ],
         type: BottomNavigationBarType.shifting,

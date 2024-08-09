@@ -1,6 +1,7 @@
 import 'package:custom_rating_bar/custom_rating_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:seatGeek/Theatre%20Booking/show_time_booking.dart';
 import '../Theatre Booking/Seat Cubit/cubit.dart';
 import '../Theatre Booking/theatre.dart';
 import '../../constants.dart';
@@ -211,19 +212,25 @@ class MovieDetailScreen extends StatelessWidget {
                             alignment: Alignment.center,
                             child: ElevatedButton(
                               onPressed: () {
-                                Navigator.push(
-                                    context,
-                                    MaterialPageRoute(
-                                      builder: (context) => BlocProvider(
-                                        create: (_) => SeatCubit({}),
-                                        child: TheatreScreen(
-                                          movieId: movie.id,
-                                          movieName: movie.title,
-                                          poster: movie.backdropPath,
-                                          otherImage: movie.posterPath,
-                                        ),
-                                      ),
-                                    ));
+                                // Navigator.push(
+                                //     context,
+                                //     MaterialPageRoute(
+                                //       builder: (context) => BlocProvider(
+                                //         create: (_) => SeatCubit({}),
+                                //         child: TheatreScreen(
+                                //           movieId: movie.id,
+                                //           movieName: movie.title,
+                                //           poster: movie.backdropPath,
+                                //           otherImage: movie.posterPath,
+                                //         ),
+                                //       ),
+                                //     ));
+                                Navigator.push(context, MaterialPageRoute(builder: (context) => MovieShowtimePage(
+                                  movieId: movie.id,
+                                  movieName: movie.title,
+                                  poster: movie.backdropPath,
+                                  otherImage: movie.posterPath,
+                                ),));
                               },
                               style: ElevatedButton.styleFrom(
                                 shape: const RoundedRectangleBorder(),

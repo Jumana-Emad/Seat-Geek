@@ -1,7 +1,8 @@
+import 'dart:math';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:simplife/constants.dart';
+import '../constants.dart';
 import '../Ticket/models/ticket_model.dart';
 import 'Services/payment_service.dart';
 import 'Seat Cubit/cubit.dart';
@@ -14,12 +15,16 @@ class TheatreScreen extends StatefulWidget {
       required this.movieId,
       required this.movieName,
       required this.poster,
-      required this.otherImage});
+      required this.otherImage,
+      required this.date,
+      required this.time});
 
   final int movieId;
   final String movieName;
   final String poster;
   final String otherImage;
+  final String date;
+  final String time;
 
   @override
   State<TheatreScreen> createState() => _TheatreScreenState();
@@ -35,7 +40,8 @@ class _TheatreScreenState extends State<TheatreScreen> {
   }
 
   Future<void> _initializeMovie() async {
-    await createOrUpdateMovie(widget.movieId.toString(), context);
+    String slot = "${widget.movieId}${widget.date}${widget.time}";
+    await createOrUpdateMovie(slot, context);
   }
 
   ScrollController centerPage = ScrollController(initialScrollOffset: 250);
@@ -122,21 +128,20 @@ class _TheatreScreenState extends State<TheatreScreen> {
               return GestureDetector(
                 onTap: () {
                   if (totalPrice > 0) {
-                    TicketData ticket = TicketData(
+                    Ticket ticket = Ticket(
                         movieId: widget.movieId.toString(),
                         movieName: widget.movieName,
                         totalPrice: totalPrice,
-                        bookingDate: DateTime.now(),
+                        // bookingDate: DateTime.now(),
+                        date: widget.date,
+                        time: widget.time,
+                        rating: "PG-13",
+                        screenNumber: "Screen ${Random().nextInt(20)}",
                         userId: FirebaseAuth.instance.currentUser!.uid,
                         selectedSeats:
                             context.read<SeatCubit>().getSelectedSeats(),
                         movieLogoPath: widget.otherImage);
                     pay(ticket, context);
-                    // Navigator.push(
-                    //     context, MaterialPageRoute(builder: (context) =>
-                    //     PaymentPage(
-                    //       ticket:ticket
-                    //     ),));
                   } else {
                     showDialog(
                       context: context,

@@ -2,7 +2,7 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import '../models/ticket_model.dart';
 
-Future<List<TicketData>> getUserTickets() async {
+Future<List<Ticket>> getUserTickets() async {
   final firestore = FirebaseFirestore.instance;
   final userId = FirebaseAuth.instance.currentUser?.uid;
 
@@ -15,5 +15,5 @@ Future<List<TicketData>> getUserTickets() async {
   final snapshot = await firestore.collection('users').doc(userId).collection('tickets').get();
 
   // Convert the documents to Ticket instances
-  return snapshot.docs.map((doc) => TicketData.fromMap(doc.data())).toList();
+  return snapshot.docs.map((doc) => Ticket.fromMap(doc.data())).toList();
 }

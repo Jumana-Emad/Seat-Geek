@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
-import 'models/cinema_ticket.dart';
+import 'models/ticket_model.dart';
 
 class TicketData extends StatelessWidget {
-  final CinemaTicket ticket;
+  final Ticket ticket;
 
   const TicketData({
     required this.ticket,
