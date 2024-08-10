@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:seatGeek/Theatre%20Booking/theatre.dart';
 import 'package:seatGeek/constants.dart';
-
 import 'Seat Cubit/cubit.dart';
 
 class MovieShowtimePage extends StatefulWidget {
@@ -45,7 +44,7 @@ class MovieShowtimePageState extends State<MovieShowtimePage> {
     return Scaffold(
       appBar: AppBar(
         title: const Text("Select Showtime"),
-        backgroundColor: Theme.of(context).colorScheme.secondary,
+        backgroundColor: Theme.of(context).colorScheme.surface,
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
@@ -97,8 +96,8 @@ class MovieShowtimePageState extends State<MovieShowtimePage> {
                         },
                         selectedColor: Theme.of(context)
                             .colorScheme
-                            .secondary
-                            .withOpacity(0.7),
+                            .surface
+                        ,
                         backgroundColor: Colors.grey[300],
                         labelStyle: TextStyle(
                           color: _selectedDayIndex == index
@@ -136,8 +135,8 @@ class MovieShowtimePageState extends State<MovieShowtimePage> {
                           },
                           selectedColor: Theme.of(context)
                               .colorScheme
-                              .secondary
-                              .withOpacity(0.7),
+                              .surface
+                              ,
                           backgroundColor: Colors.grey[300],
                           labelStyle: TextStyle(
                             color: _selectedTimeIndex ==
@@ -176,6 +175,7 @@ class MovieShowtimePageState extends State<MovieShowtimePage> {
                         //     "Selected Time: ${_times[_selectedDayIndex][_selectedTimeIndex]}");
                       },
                 style: ElevatedButton.styleFrom(
+                  backgroundColor: Theme.of(context).colorScheme.surface,
                   padding: const EdgeInsets.symmetric(vertical: 16),
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(10),

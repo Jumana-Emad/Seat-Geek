@@ -7,7 +7,7 @@ import '../Ticket/models/ticket_model.dart';
 import 'Services/payment_service.dart';
 import 'Seat Cubit/cubit.dart';
 import 'Widgets/seat_row.dart';
-import 'generator.dart';
+import 'Services/generator.dart';
 
 class TheatreScreen extends StatefulWidget {
   const TheatreScreen(
@@ -44,7 +44,7 @@ class _TheatreScreenState extends State<TheatreScreen> {
     await createOrUpdateMovie(slot, context);
   }
 
-  ScrollController centerPage = ScrollController(initialScrollOffset: 250);
+  ScrollController centerPage = ScrollController(initialScrollOffset: 320);
 
   @override
   Widget build(BuildContext context) {
@@ -161,7 +161,7 @@ class _TheatreScreenState extends State<TheatreScreen> {
                 child: Container(
                   padding: const EdgeInsets.all(16.0),
                   child: Text(
-                    'Total Price: \$$totalPrice',
+                    'Pay: \$$totalPrice',
                     style: const TextStyle(
                       fontSize: 24,
                       fontWeight: FontWeight.bold,

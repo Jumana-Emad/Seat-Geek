@@ -1,7 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'Seat Cubit/cubit.dart';
+import '../Seat Cubit/cubit.dart';
 
 Future<void> createOrUpdateMovie(String movieId, BuildContext context) async {
   final isInitialized = await isMovieInitialized(movieId);

@@ -29,7 +29,7 @@ class MovieListScreen extends StatelessWidget {
                     alignment: Alignment.center,
                     children: [
                       Opacity(
-                          opacity: 0.8,
+                          opacity: Theme.of(context).brightness == Brightness.light? 0.9 : 0.8,
                           child: Image.network('${Shared.imageBaseUrl}${movie.posterPath}',width: MediaQuery.of(context).size.width,)),
                       Center(
                         child: SingleChildScrollView(
